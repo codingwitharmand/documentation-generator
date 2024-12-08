@@ -1,1 +1,3 @@
-spring.application.name: documentation-generator
+spring.application.name: readme-generator
+
+github.api.token: ${GITHUB_API_TOKEN}
