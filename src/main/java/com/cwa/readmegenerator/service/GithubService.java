@@ -17,7 +17,7 @@ public class GithubService {
     @Value("${github.api.token}")
     private String githubApiToken;
 
-    public Map<String, Object> fetchRepositoryDetails(String repositoryUrl) throws IOException {
+    public Map<String, Object> getRepositoryDetails(String repositoryUrl) throws IOException {
         var repository = getGithubRepository(repositoryUrl);
 
         var details = new HashMap<String, Object>();

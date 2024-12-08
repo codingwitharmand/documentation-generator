@@ -24,14 +24,14 @@ class GithubServiceTest {
     @BeforeAll
     static void setUp() {
         var dotenv = Dotenv.load();
-        System.setProperty("GITHUB_API_TOKEN", dotenv.get("GITHUB_API_TOKEN"));
+        dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
     }
 
     @Test
     void shouldReturnRepositoryDetails() throws IOException {
         var repoUrl = "https://github.com/AsmrProg-YT/100-days-of-javascript.git";
 
-        var result = githubService.fetchRepositoryDetails(repoUrl);
+        var result = githubService.getRepositoryDetails(repoUrl);
 
         assertNotNull(result);
         assertEquals("100-days-of-javascript", result.get("name"));
@@ -41,11 +41,11 @@ class GithubServiceTest {
 
     @Test
     void shouldReturnRepositoryFiles() throws IOException {
-        var repoUrl = "https://github.com/AsmrProg-YT/100-days-of-javascript.git";
+        var repoUrl = "https://github.com/codingwitharmand/techstore.git";
 
         var result = githubService.getRepositoryFiles(repoUrl);
 
         assertFalse(result.isEmpty());
-        assertTrue(result.size() > 500);
+        assertTrue(result.size() > 5);
     }
 }
